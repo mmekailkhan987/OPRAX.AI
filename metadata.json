@@ -1,0 +1,7 @@
+{
+  "name": "OPRAX.AI - Premium Digital Transformation Agency",
+  "description": "High-performance landing page for Oprax.AI featuring AI automation, web development, and digital ecosystems.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
