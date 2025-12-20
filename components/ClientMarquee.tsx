@@ -1,40 +1,50 @@
 import React from 'react';
 
-// Using SimpleIcons CDN with the /white endpoint guarantees the icons render in white
-// This avoids hotlink protection issues from Wikipedia or other sources
-const LOGOS = [
-  { name: 'Google', url: 'https://cdn.simpleicons.org/google/white' },
-  { name: 'OpenAI', url: 'https://cdn.simpleicons.org/openai/white' },
-  { name: 'Vercel', url: 'https://cdn.simpleicons.org/vercel/white' },
-  { name: 'Stripe', url: 'https://cdn.simpleicons.org/stripe/white' },
-  { name: 'React', url: 'https://cdn.simpleicons.org/react/white' },
-  { name: 'Tailwind CSS', url: 'https://cdn.simpleicons.org/tailwindcss/white' },
-  { name: 'TypeScript', url: 'https://cdn.simpleicons.org/typescript/white' },
-  { name: 'Amazon AWS', url: 'https://cdn.simpleicons.org/amazonaws/white' },
+// Text-based companies for guaranteed visibility and premium aesthetic
+const COMPANIES = [
+  "GOOGLE",
+  "OPENAI",
+  "NIKE",
+  "AMAZON",
+  "FIGMA",
+  "RIOT GAMES",
+  "VERCEL",
+  "STRIPE",
+  "ADIDAS",
+  "ROGUE"
 ];
 
 const ClientMarquee: React.FC = () => {
   return (
-    <section className="py-20 border-y border-white/5 relative z-10 overflow-hidden bg-slate-950/20">
+    <section className="py-20 border-y border-white/5 relative z-10 overflow-hidden bg-[#050714]">
       <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 font-sans">Powering The Next Generation</span>
       </div>
       
       <div className="flex whitespace-nowrap overflow-hidden relative w-full">
         {/* Fade gradients for smooth entrance/exit */}
-        <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[#000000] to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[#000000] to-transparent z-10" />
+        <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#050714] to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#050714] to-transparent z-20 pointer-events-none" />
         
-        <div className="flex animate-infinite-scroll min-w-full items-center">
-          {/* Loop the list multiple times to ensure seamless infinite scroll */}
-          {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
-            <div key={i} className="flex items-center justify-center px-12 md:px-16 opacity-40 hover:opacity-100 transition-opacity duration-300">
-              <img 
-                src={logo.url} 
-                alt={logo.name} 
-                className="h-6 md:h-8 w-auto object-contain" 
-                loading="lazy"
-              />
+        {/* 
+           Infinite Scroll Animation:
+           We duplicate the list 4 times. The animation translates -50%.
+           At -50%, we have scrolled past exactly half the width (2 sets).
+           The view then instantly snaps back to 0%, where set 1 is visible, matching set 3.
+        */}
+        <div 
+          className="flex animate-infinite-scroll min-w-full items-center"
+          style={{ 
+            animationDuration: '5s',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden'
+          }} 
+        >
+          {[...COMPANIES, ...COMPANIES, ...COMPANIES, ...COMPANIES].map((company, i) => (
+            <div key={i} className="flex items-center justify-center px-12 md:px-20">
+              <span className="text-3xl md:text-5xl font-black text-white/20 uppercase tracking-tighter hover:text-white transition-colors duration-500 cursor-default font-sans whitespace-nowrap transform translate-z-0">
+                {company}
+              </span>
             </div>
           ))}
         </div>
