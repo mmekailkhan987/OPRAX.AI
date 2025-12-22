@@ -1,30 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 
 const SHOWCASES = [
   {
-    title: 'Premium Landing Pages',
-    subtitle: 'Convert Visitors Into Customers',
-    metric: '• 3X Higher Conversion Rates',
-    desc: 'Stunning, fast-loading websites that turn browsers into buyers. Mobile-responsive, SEO-optimized, delivered in 48 hours.',
-    badge: 'WEBSITE',
-    badgeColor: 'text-[#00D4FF] bg-[#00D4FF]/10 border-[#00D4FF]/20',
-    glowColor: 'group-hover:shadow-[0_0_50px_rgba(0,212,255,0.2)]',
-    // Image: Sleek Dashboard / Web Interface
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800', 
-    accent: '#00D4FF'
+    title: 'Bright Smile Dental',
+    subtitle: 'Live AI Integration Demo',
+    metric: '• Intelligent Chat & Booking',
+    desc: 'A fully functional live demo featuring a high-performance landing page and a custom AI agent that handles patient inquiries and appointments in real-time.',
+    badge: 'LIVE DEMO',
+    badgeColor: 'text-[#bef264] bg-[#bef264]/10 border-[#bef264]/20',
+    glowColor: 'group-hover:shadow-[0_0_50px_rgba(190,242,100,0.2)]',
+    img: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800', 
+    accent: '#bef264',
+    link: 'https://bright-smile-dental-diab.vercel.app'
   },
   {
-    title: 'AI Website Chatbot',
-    subtitle: 'Answer Questions 24/7',
-    metric: '• Captures 85% More Leads',
-    desc: 'Never miss a customer again. AI answers questions, books appointments, and captures leads while you sleep.',
-    badge: 'AI AUTOMATION',
-    badgeColor: 'text-[#A855F7] bg-[#A855F7]/10 border-[#A855F7]/20',
-    glowColor: 'group-hover:shadow-[0_0_50px_rgba(168,85,247,0.2)]',
-    // Image: Artificial Intelligence / Digital Brain Node
-    img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800',
-    accent: '#A855F7'
+    title: 'Apex Fitness',
+    subtitle: 'Premium Gym Experience',
+    metric: '• High-Impact Design',
+    desc: 'A high-octane digital experience designed for elite fitness brands. Features seamless member acquisition flows and premium dark-mode aesthetics.',
+    badge: 'LIVE DEMO',
+    badgeColor: 'text-[#00D4FF] bg-[#00D4FF]/10 border-[#00D4FF]/20',
+    glowColor: 'group-hover:shadow-[0_0_50px_rgba(0,212,255,0.2)]',
+    img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800',
+    accent: '#00D4FF',
+    link: 'https://apex-fitness-kappa.vercel.app'
   },
   {
     title: 'AI Phone Receptionist',
@@ -34,7 +35,6 @@ const SHOWCASES = [
     badge: 'VOICE AI',
     badgeColor: 'text-[#FF6B35] bg-[#FF6B35]/10 border-[#FF6B35]/20',
     glowColor: 'group-hover:shadow-[0_0_50px_rgba(255,107,53,0.2)]',
-    // Image: Digital Sound Wave / Voice Visualization
     img: 'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800',
     accent: '#FF6B35'
   }
@@ -61,7 +61,8 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               whileHover={{ y: -10 }}
-              className={`group relative glass-premium rounded-[1.5rem] overflow-hidden border border-white/5 transition-all duration-500 ${item.glowColor} flex flex-col h-full bg-gradient-to-b from-[#0A0E27]/80 to-[#000000]/80`}
+              onClick={() => item.link && window.open(item.link, '_blank')}
+              className={`group relative glass-premium rounded-[1.5rem] overflow-hidden border border-white/5 transition-all duration-500 ${item.glowColor} flex flex-col h-full bg-gradient-to-b from-[#0A0E27]/80 to-[#000000]/80 ${item.link ? 'cursor-pointer' : ''}`}
             >
               {/* Image Section */}
               <div className="relative h-48 md:h-64 overflow-hidden">
@@ -74,11 +75,18 @@ const Portfolio: React.FC = () => {
                 <div className={`absolute top-4 right-4 md:top-5 md:right-5 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest border backdrop-blur-md z-20 ${item.badgeColor}`}>
                   {item.badge}
                 </div>
+                {item.link && (
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-30">
+                        <div className="bg-[#bef264] text-black px-4 py-2 rounded-full font-black text-xs flex items-center gap-2 transform scale-90 group-hover:scale-100 transition-transform">
+                            View Live Demo <ExternalLink className="w-3 h-3" />
+                        </div>
+                    </div>
+                )}
               </div>
 
               {/* Content Section */}
               <div className="p-6 md:p-8 flex flex-col flex-grow relative z-20 -mt-8 md:-mt-10">
-                <h3 className="text-xl md:text-2xl font-black text-white mb-1 uppercase tracking-tight leading-none">{item.title}</h3>
+                <h3 className="text-xl md:text-2xl font-black text-white mb-1 uppercase tracking-tight leading-none group-hover:text-[#bef264] transition-colors">{item.title}</h3>
                 <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 md:mb-4">{item.subtitle}</p>
                 
                 <div className="mb-4 md:mb-5" style={{ color: item.accent }}>
